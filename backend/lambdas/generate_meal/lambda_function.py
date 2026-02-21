@@ -26,6 +26,7 @@ bedrock = boto3.client("bedrock-runtime")
 DATA_BUCKET = os.environ.get("DATA_BUCKET", "nutrigenie-data")
 LLM_MODEL_ID = os.environ.get("LLM_MODEL_ID", "amazon.nova-micro-v1:0")
 EMBEDDING_MODEL_ID = os.environ.get("EMBEDDING_MODEL_ID", "amazon.titan-embed-text-v2:0")
+MEAL_PLANS_TABLE = os.environ.get("MEAL_PLANS_TABLE", "NutriGenieMealPlans")
 
 # Cache for nutrition data (persists across warm Lambda invocations)
 _nutrition_cache = {"data": None, "embeddings": None, "texts": None}
@@ -57,6 +58,9 @@ def lambda_handler(event, context):
 
         # Step 5: Enrich with nutrition data
         enriched_plan = _enrich_with_nutrition(meal_plan, nutrition_data)
+
+        # Step 6: Save to DynamoDB
+        _save_meal_plan_to_db(kit_id, patient, enriched_plan)
 
         return _response(200, {
             "kit_id": kit_id,
@@ -481,6 +485,43 @@ def _enrich_with_nutrition(plan: dict, nutrition_data: list) -> dict:
         plan[day_key]["daily_totals"] = daily_totals
 
     return plan
+
+
+def _save_meal_plan_to_db(kit_id: str, patient: dict, meal_plan: dict):
+    """Save the fully generated meal plan to DynamoDB."""
+    try:
+        dynamodb = boto3.resource("dynamodb")
+        table = dynamodb.Table(MEAL_PLANS_TABLE)
+        
+        from datetime import datetime
+        import json
+        from decimal import Decimal
+        
+        timestamp = datetime.utcnow().isoformat()
+        
+        # We need to convert floats to Decimals for DynamoDB
+        item_data = {
+            "kit_id": kit_id,
+            "created_at": timestamp,
+            "patient_summary": {
+                "name": patient.get("name", ""),
+                "diet_type": patient.get("diet_type", ""),
+                "avoid_list": patient.get("avoid_list", []),
+                "ibs_type": patient.get("ibs_info", {}).get("subtype", "")
+            },
+            "meal_plan": meal_plan
+        }
+        
+        # Parse through JSON to convert floats to Decimals seamlessly
+        item_json = json.dumps(item_data)
+        item_dict = json.loads(item_json, parse_float=Decimal)
+        
+        table.put_item(Item=item_dict)
+        logger.info(f"Successfully saved meal plan for {kit_id} to DynamoDB.")
+    except Exception as e:
+        logger.error(f"Failed to save meal plan to DynamoDB: {e}")
+        # We catch and log, but do not fail the generation response
+        pass
 
 
 # ═══════════════════════════════════════════════════════════
