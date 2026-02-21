@@ -650,6 +650,171 @@ body {
     border-top: 1px solid var(--border);
 }
 
+/* ── Swap Button ── */
+.btn-swap-meal {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 14px;
+    margin-top: 10px;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 999px;
+    color: var(--warning);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-swap-meal:hover {
+    background: rgba(245, 158, 11, 0.2);
+    transform: translateY(-1px);
+}
+
+.btn-swap-meal:disabled {
+    opacity: 0.4;
+    cursor: wait;
+}
+
+/* ── Swap Modal ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.modal-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    max-width: 440px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+}
+
+.modal-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--bg-glass);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    background: var(--bg-glass-hover);
+    color: var(--text);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-meal-info {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.modal-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    display: block;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.modal-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.modal-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-swap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-swap:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+}
+
+/* ── Swap animation ── */
+.meal-card.swapping {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.meal-card.swapped {
+    animation: swapFlash 0.5s ease;
+}
+
+@keyframes swapFlash {
+    0% {
+        border-color: var(--warning);
+        box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    }
+
+    100% {
+        border-color: var(--border);
+        box-shadow: none;
+    }
+}
+
 .hidden {
     display: none !important;
 }

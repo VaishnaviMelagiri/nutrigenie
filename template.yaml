@@ -98,6 +98,29 @@ Resources:
             Method: POST
             RestApiId: !Ref NutriGenieApi
 
+  SwapMealFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: nutrigenie-swap-meal
+      CodeUri: backend/lambdas/swap_meal/
+      Handler: lambda_function.lambda_handler
+      MemorySize: 512
+      Timeout: 60
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref DataBucket
+        - Statement:
+            - Effect: Allow
+              Action: bedrock:InvokeModel
+              Resource: '*'
+      Events:
+        SwapMeal:
+          Type: Api
+          Properties:
+            Path: /swap
+            Method: POST
+            RestApiId: !Ref NutriGenieApi
+
   # ─── Lambda Layer (numpy) ──────────────────────────
   NumpyLayer:
     Type: AWS::Serverless::LayerVersion

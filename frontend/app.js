@@ -1,22 +1,19 @@
 /**
- * NutriGenie — Simplified App (Kit ID → Meal Plan)
+ * Personalized Meal Plan Generator by IOM Bioworks
  */
 
-// ═══ Config — Set this after deployment ═══
+// ═══ Config ═══
 const API_URL = 'https://f8c7x5y2hg.execute-api.us-east-1.amazonaws.com/prod';
 
 const $ = id => document.getElementById(id);
 
 let currentDay = 'day_1';
 let mealPlanData = null;
+let swapTarget = null; // {day, meal_type, name}
 
 document.addEventListener('DOMContentLoaded', () => {
     $('generateBtn').addEventListener('click', handleGenerate);
     $('kitId').addEventListener('keypress', (e) => { if (e.key === 'Enter') handleGenerate(); });
-
-    if (!API_URL) {
-        showToast('⚙️ API URL not configured. Deploy first, then update API_URL in app.js', 'info', 8000);
-    }
 });
 
 // ═══ Main Flow ═══
@@ -28,12 +25,10 @@ async function handleGenerate() {
     setStatus('processing', 'Generating...');
 
     try {
-        // Step 1: Load patient profile
         showToast('📋 Loading patient data...', 'info', 3000);
         const profile = await apiCall(`/patient/${kitId}`, 'GET');
         renderProfile(profile);
 
-        // Step 2: Generate meal plan
         showToast('🧠 AI is generating your meal plan (30-60s)...', 'info', 10000);
         const result = await apiCall('/meal', 'POST', { kit_id: kitId });
 
@@ -42,7 +37,7 @@ async function handleGenerate() {
         renderMealPlan(result);
 
         setStatus('online', 'Ready');
-        showToast('✅ Meal plan generated!', 'success');
+        showToast('✅ Meal plan generated! Click 🔄 Swap on any meal to replace it.', 'success', 5000);
 
     } catch (err) {
         console.error(err);
@@ -75,7 +70,6 @@ function renderProfile(profile) {
         </div>
     `).join('');
 
-    // Avoid list
     if (profile.avoid_list?.length) {
         html += `<div class="profile-card" style="grid-column: span 2">
             <div class="profile-card-label">🚫 Avoid List (Food Allergies)</div>
@@ -83,7 +77,6 @@ function renderProfile(profile) {
         </div>`;
     }
 
-    // Bacteria targets
     const bInc = profile.bacteria_to_increase?.filter(b => !b.name.includes('Other')).slice(0, 5) || [];
     const bDec = profile.bacteria_to_decrease?.filter(b => !b.name.includes('Other')).slice(0, 5) || [];
     if (bInc.length) {
@@ -162,10 +155,12 @@ function renderDay(dayKey) {
             </div>`;
         }).join('');
 
-        html += `<div class="meal-card">
+        html += `<div class="meal-card" id="meal-${dayKey}-${type}">
             <div class="meal-content">
-                <span class="meal-type">${labels[type] || type}</span>
-                ${m.prep_time_min ? `<span style="font-size:0.7rem;color:var(--text-muted);margin-left:8px">⏱ ${m.prep_time_min}min</span>` : ''}
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                    <span class="meal-type">${labels[type] || type}</span>
+                    ${m.prep_time_min ? `<span style="font-size:0.7rem;color:var(--text-muted)">⏱ ${m.prep_time_min}min</span>` : ''}
+                </div>
                 <h3 class="meal-name">${esc(m.name || 'Meal')}</h3>
                 ${m.benefits ? `<p class="meal-benefits">${esc(m.benefits)}</p>` : ''}
                 <div class="ingredients-list">
@@ -178,6 +173,9 @@ function renderDay(dayKey) {
                     <div class="macro-box"><span class="macro-val">${fat}g</span><span class="macro-lbl">Fat</span></div>
                     <div class="macro-box"><span class="macro-val">${fib}g</span><span class="macro-lbl">Fiber</span></div>
                 </div>
+                <button class="btn-swap-meal" onclick="openSwapModal('${dayKey}', '${type}', '${esc(m.name || 'Meal')}')">
+                    🔄 Swap This Meal
+                </button>
             </div>
             <div class="meal-cal-box">
                 <span class="cal-value">${cal}</span>
@@ -210,6 +208,71 @@ function makeBar(label, val, max, unit, cls) {
         <div class="bar-header"><span class="bar-label">${label}</span><span class="bar-value">${Math.round(val)}/${max} ${unit}</span></div>
         <div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div>
     </div>`;
+}
+
+// ═══ Swap Feature ═══
+function openSwapModal(day, mealType, mealName) {
+    swapTarget = { day, meal_type: mealType, name: mealName };
+    const labels = { breakfast: 'Breakfast', mid_morning_snack: 'Mid-Morning Snack', lunch: 'Lunch', evening_snack: 'Evening Snack', dinner: 'Dinner' };
+    $('swapMealInfo').innerHTML = `Replacing <strong>${esc(mealName)}</strong> (${labels[mealType] || mealType}, ${day.replace('_', ' ')})`;
+    $('swapReason').value = '';
+    $('swapModal').classList.remove('hidden');
+}
+
+function closeSwapModal() {
+    $('swapModal').classList.add('hidden');
+    swapTarget = null;
+}
+
+async function confirmSwap() {
+    if (!swapTarget) return;
+
+    const kitId = $('kitId').value.trim();
+    const reason = $('swapReason').value.trim();
+    const { day, meal_type, name } = swapTarget;
+
+    // Show loading
+    $('swapBtnText').textContent = 'Swapping...';
+    $('swapSpinner').classList.remove('hidden');
+    const btn = $('swapBtn');
+    btn.disabled = true;
+
+    // Highlight the card being swapped
+    const card = document.getElementById(`meal-${day}-${meal_type}`);
+    if (card) card.classList.add('swapping');
+
+    try {
+        const result = await apiCall('/swap', 'POST', {
+            kit_id: kitId,
+            day: day,
+            meal_type: meal_type,
+            current_meal: name,
+            reason: reason,
+        });
+
+        // Update the meal plan data in memory
+        if (result.new_meal && mealPlanData[day]) {
+            mealPlanData[day][meal_type] = result.new_meal;
+            renderDay(day); // Re-render current day
+            showToast(`✅ Swapped! "${name}" → "${result.new_meal.name}"`, 'success', 5000);
+
+            // Flash animation on the new card
+            setTimeout(() => {
+                const newCard = document.getElementById(`meal-${day}-${meal_type}`);
+                if (newCard) newCard.classList.add('swapped');
+            }, 50);
+        }
+
+        closeSwapModal();
+
+    } catch (err) {
+        showToast(`❌ Swap failed: ${err.message}`, 'error', 5000);
+        if (card) card.classList.remove('swapping');
+    } finally {
+        $('swapBtnText').textContent = '🔄 Get Alternative';
+        $('swapSpinner').classList.add('hidden');
+        btn.disabled = false;
+    }
 }
 
 // ═══ API ═══

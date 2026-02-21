@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriGenie — Personalized Meal Plan</title>
+    <title>Personalized Meal Plan Generator | IOM Bioworks</title>
+    <meta name="description"
+        content="AI-powered personalized Indian meal plan generator based on your IOM gut health report.">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -18,7 +20,7 @@
     <nav class="navbar">
         <div class="nav-brand">
             <span class="nav-icon">🧬</span>
-            <span class="nav-title">NutriGenie</span>
+            <span class="nav-title">IOM Bioworks</span>
         </div>
         <div class="nav-status" id="connectionStatus">
             <span class="status-dot online"></span>
@@ -28,13 +30,14 @@
 
     <!-- Hero -->
     <header class="hero">
-        <div class="hero-badge">AI-Powered Nutrition • RAG + IFCT Data</div>
+        <div class="hero-badge">Personalized Meal Plan Generator • Powered by AI</div>
         <h1 class="hero-title">
             Enter Your Kit ID.<br>
             <span class="gradient-text">Get Your Perfect Meals.</span>
         </h1>
         <p class="hero-subtitle">
-            Personalized 7-day Indian meal plan based on your IOM gut health report.
+            Personalized 7-day Indian meal plan based on your IOM gut health report.<br>
+            <strong>Don't like a meal? Swap it instantly.</strong>
         </p>
 
         <!-- Kit ID Input -->
@@ -50,13 +53,13 @@
         </div>
     </header>
 
-    <!-- Patient Profile (shown after loading) -->
+    <!-- Patient Profile -->
     <section class="section hidden" id="profileSection">
         <h2 class="section-title">📋 Patient Profile</h2>
         <div class="profile-grid" id="profileGrid"></div>
     </section>
 
-    <!-- Meal Plan (shown after generation) -->
+    <!-- Meal Plan -->
     <section class="section hidden" id="mealSection">
         <h2 class="section-title">🍛 Your 7-Day Meal Plan</h2>
         <p class="section-desc" id="planInfo"></p>
@@ -65,11 +68,33 @@
         <div class="daily-summary hidden" id="dailySummary"></div>
     </section>
 
+    <!-- Swap Modal -->
+    <div class="modal-overlay hidden" id="swapModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>🔄 Swap Meal</h3>
+                <button class="modal-close" onclick="closeSwapModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-meal-info" id="swapMealInfo"></p>
+                <label class="modal-label">Why do you want to swap? (optional)</label>
+                <input type="text" id="swapReason" class="modal-input" placeholder="e.g. I don't like ragi">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-swap" id="swapBtn" onclick="confirmSwap()">
+                    <span id="swapBtnText">🔄 Get Alternative</span>
+                    <div class="spinner hidden" id="swapSpinner"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast -->
     <div class="toast-container" id="toastContainer"></div>
 
     <footer class="footer">
-        Built with 🧬 AI • Powered by AWS Bedrock + RAG • IFCT Nutrition Data
+        Personalized Meal Plan Generator by <strong>IOM Bioworks</strong> • Powered by AWS Bedrock + RAG • IFCT
+        Nutrition Data
     </footer>
 
     <script src="app.js"></script>
