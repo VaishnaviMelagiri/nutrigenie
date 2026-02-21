@@ -24,7 +24,7 @@ s3 = boto3.client("s3")
 bedrock = boto3.client("bedrock-runtime")
 
 DATA_BUCKET = os.environ.get("DATA_BUCKET", "nutrigenie-data")
-LLM_MODEL_ID = os.environ.get("LLM_MODEL_ID", "amazon.titan-text-express-v1")
+LLM_MODEL_ID = os.environ.get("LLM_MODEL_ID", "amazon.nova-micro-v1:0")
 EMBEDDING_MODEL_ID = os.environ.get("EMBEDDING_MODEL_ID", "amazon.titan-embed-text-v2:0")
 
 # Cache for nutrition data (persists across warm Lambda invocations)
@@ -376,9 +376,9 @@ Generate the complete 7-day meal plan now. Output ONLY valid JSON."""
             contentType="application/json",
             accept="application/json",
             body=json.dumps({
-                "inputText": prompt,
-                "textGenerationConfig": {
-                    "maxTokenCount": 8000,
+                "messages": [{"role": "user", "content": [{"text": prompt}]}],
+                "inferenceConfig": {
+                    "maxTokens": 8000,
                     "temperature": 0.3,
                     "topP": 0.9,
                 }
@@ -386,7 +386,7 @@ Generate the complete 7-day meal plan now. Output ONLY valid JSON."""
         )
 
         result = json.loads(response["body"].read())
-        content = result.get("results", [{}])[0].get("outputText", "")
+        content = result.get("output", {}).get("message", {}).get("content", [{}])[0].get("text", "")
 
         # Extract JSON from response
         json_start = content.find("{")

@@ -20,7 +20,7 @@ s3 = boto3.client("s3")
 bedrock = boto3.client("bedrock-runtime")
 
 DATA_BUCKET = os.environ.get("DATA_BUCKET", "nutrigenie-data")
-LLM_MODEL_ID = os.environ.get("LLM_MODEL_ID", "amazon.titan-text-express-v1")
+LLM_MODEL_ID = os.environ.get("LLM_MODEL_ID", "amazon.nova-micro-v1:0")
 
 
 def lambda_handler(event, context):
@@ -108,9 +108,9 @@ OUTPUT JSON:
             contentType="application/json",
             accept="application/json",
             body=json.dumps({
-                "inputText": full_prompt,
-                "textGenerationConfig": {
-                    "maxTokenCount": 1500,
+                "messages": [{"role": "user", "content": [{"text": full_prompt}]}],
+                "inferenceConfig": {
+                    "maxTokens": 1500,
                     "temperature": 0.5,
                     "topP": 0.9,
                 }
@@ -118,7 +118,7 @@ OUTPUT JSON:
         )
 
         result = json.loads(response["body"].read())
-        content = result.get("results", [{}])[0].get("outputText", "")
+        content = result.get("output", {}).get("message", {}).get("content", [{}])[0].get("text", "")
 
         # Parse JSON
         json_start = content.find("{")
