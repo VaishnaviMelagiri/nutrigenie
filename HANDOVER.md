@@ -70,6 +70,27 @@ To transfer the hosting to the company's AWS account, the company **must deploy 
 
 ---
 
+## 3. Managing the Database (DynamoDB & S3)
+
+The application uses two Serverless Databases:
+
+### A. S3 (For Patient Imports)
+* **What it does:** Stores the `IOM_KIT001.json` files that clients submit.
+* **How to Manage:** Go to the **AWS Console > S3**. Click your `nutrigenie-data-*` bucket, go to the `patients/` folder, and click **Upload** whenever you have a new patient report.
+
+### B. DynamoDB (For Exporting Meal Plans)
+* **What it does:** Every time a user clicks "Generate Meal Plan", a perfect copy of the final meal plan is permanently saved here, tagged with their Kit ID and the exact time it was generated.
+* **How to View/Export:**
+  1. Go to the **AWS Console**. Type **DynamoDB** in the top search bar.
+  2. Click **Tables** on the left menu.
+  3. Click on the table named `NutriGenieMealPlans-*`.
+  4. Click the orange **Explore table items** button in the top right.
+  5. Here, you will see a massive spreadsheet of every meal plan ever generated.
+  6. **To export**, click the **Actions** dropdown and select **Download results to CSV**.
+  7. **To delete**, check the box next to any old meal plan and click **Delete**.
+
+---
+
 ## 3. Final Verification
 
 1. The company opens their unique Frontend URL (provided in the SAM deploy outputs).
