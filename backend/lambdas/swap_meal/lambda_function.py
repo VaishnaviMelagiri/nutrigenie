@@ -20,7 +20,7 @@ s3 = boto3.client("s3")
 bedrock = boto3.client("bedrock-runtime")
 
 DATA_BUCKET = os.environ.get("DATA_BUCKET", "nutrigenie-data")
-LLM_MODEL_ID = os.environ.get("LLM_MODEL_ID", "anthropic.claude-3-haiku-20240307-v1:0")
+LLM_MODEL_ID = os.environ.get("LLM_MODEL_ID", "amazon.titan-text-express-v1")
 
 
 def lambda_handler(event, context):
@@ -58,7 +58,7 @@ def lambda_handler(event, context):
 
         # Generate replacement via Bedrock
         system_prompt = """You are a certified Indian clinical nutritionist AI. Generate exactly ONE replacement meal.
-STRICT RULES:
+RULES:
 1. NEVER use foods from the AVOID LIST.
 2. Use DIFFERENT primary ingredients from the rejected meal.
 3. Keep similar calorie count (±15%) and nutritional profile.
@@ -91,7 +91,7 @@ Generate ONE replacement {meal_labels.get(meal_type, meal_type)} meal.
 OUTPUT JSON:
 {{
   "name": "...",
-  "ingredients": [{{"name": "...", "quantity_g": 100, "food_id": "IFCT-xxx"}}],
+  "ingredients": [{{"name": "...", "quantity_g": 100}}],
   "total_calories": 400,
   "protein_g": 12,
   "carbs_g": 50,
@@ -101,21 +101,24 @@ OUTPUT JSON:
   "benefits": "Why this is good for the patient"
 }}"""
 
+        full_prompt = system_prompt + "\n\n" + user_prompt
+
         response = bedrock.invoke_model(
             modelId=LLM_MODEL_ID,
             contentType="application/json",
             accept="application/json",
             body=json.dumps({
-                "anthropic_version": "bedrock-2023-05-31",
-                "max_tokens": 1000,
-                "temperature": 0.5,
-                "system": system_prompt,
-                "messages": [{"role": "user", "content": user_prompt}],
+                "inputText": full_prompt,
+                "textGenerationConfig": {
+                    "maxTokenCount": 1500,
+                    "temperature": 0.5,
+                    "topP": 0.9,
+                }
             })
         )
 
         result = json.loads(response["body"].read())
-        content = result.get("content", [{}])[0].get("text", "")
+        content = result.get("results", [{}])[0].get("outputText", "")
 
         # Parse JSON
         json_start = content.find("{")

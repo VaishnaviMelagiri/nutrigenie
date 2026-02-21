@@ -1,6 +1,6 @@
 """
 Lambda: generate_meal
-RAG-based meal plan generation using Bedrock Claude 3 Haiku.
+RAG-based meal plan generation using Amazon Titan Text Express.
 Reads patient data from S3, uses Indian nutrition dataset for RAG context,
 generates a personalized 7-day meal plan with full nutrition breakdown.
 
@@ -24,7 +24,7 @@ s3 = boto3.client("s3")
 bedrock = boto3.client("bedrock-runtime")
 
 DATA_BUCKET = os.environ.get("DATA_BUCKET", "nutrigenie-data")
-LLM_MODEL_ID = os.environ.get("LLM_MODEL_ID", "anthropic.claude-3-haiku-20240307-v1:0")
+LLM_MODEL_ID = os.environ.get("LLM_MODEL_ID", "amazon.titan-text-express-v1")
 EMBEDDING_MODEL_ID = os.environ.get("EMBEDDING_MODEL_ID", "amazon.titan-embed-text-v2:0")
 
 # Cache for nutrition data (persists across warm Lambda invocations)
@@ -290,7 +290,7 @@ def _filter_by_constraints(nutrition_data: list, patient: dict) -> list:
 # ═══════════════════════════════════════════════════════════
 
 def _generate_meal_plan(patient: dict, relevant_foods: list) -> dict:
-    """Generate a 7-day meal plan using Bedrock Claude 3 Haiku with RAG context."""
+    """Generate a 7-day meal plan using Amazon Titan Text Express with RAG context."""
 
     # Build food context for the prompt
     food_context = "\n".join([
@@ -316,7 +316,7 @@ def _generate_meal_plan(patient: dict, relevant_foods: list) -> dict:
     # Determine calorie target based on BMI
     bmi = float(patient.get("bmi", "20") or "20")
     if bmi < 18.5:
-        calorie_target = 2200  # Underweight — need more calories
+        calorie_target = 2200
         weight_note = "UNDERWEIGHT (BMI {:.1f}). Prioritize calorie-dense, nutrient-rich foods.".format(bmi)
     elif bmi > 25:
         calorie_target = 1600
@@ -325,37 +325,31 @@ def _generate_meal_plan(patient: dict, relevant_foods: list) -> dict:
         calorie_target = 1800
         weight_note = f"NORMAL weight (BMI {bmi:.1f})."
 
-    system_prompt = """You are a certified Indian clinical nutritionist AI. Generate a personalized 7-day Indian household meal plan.
+    prompt = f"""You are a certified Indian clinical nutritionist AI. Generate a personalized 7-day Indian household meal plan.
 
-STRICT RULES — VIOLATION IS UNACCEPTABLE:
-1. NEVER use any food from the AVOID LIST. This is NON-NEGOTIABLE.
-2. Use ONLY foods from the PROVIDED NUTRITION DATABASE below.
+STRICT RULES:
+1. NEVER use any food from the AVOID LIST.
+2. Use ONLY foods from the PROVIDED NUTRITION DATABASE.
 3. Every meal must include exact quantities in grams.
 4. Every meal must include calories, protein_g, carbs_g, fat_g, fiber_g.
 5. Daily total must be close to the calorie target (±10%).
 6. All meals must be traditional Indian household recipes.
-7. Output ONLY valid JSON. No explanations, no markdown.
+7. Output ONLY valid JSON. No explanations.
 8. Each day has 5 meals: breakfast, mid_morning_snack, lunch, evening_snack, dinner.
 9. For IBS patients: avoid gas-producing foods, prefer easy-to-digest meals.
-10. Include prebiotic and probiotic-supporting foods where possible."""
 
-    user_prompt = f"""PATIENT PROFILE:
-- Kit ID: {patient['kit_id']}
+PATIENT PROFILE:
 - Diet: {patient['diet_type']}
 - Location: {patient.get('location', 'India')}
 - Weight status: {weight_note}
 - IBS: {patient['ibs_info'].get('subtype', 'N/A')} ({patient['ibs_info'].get('severity_level', 'N/A')})
 - Daily calorie target: {calorie_target} kcal
 
-AVOID LIST (NEVER USE THESE):
-{', '.join(patient['avoid_list']) if patient['avoid_list'] else 'None'}
+AVOID LIST (NEVER USE THESE): {', '.join(patient['avoid_list']) if patient['avoid_list'] else 'None'}
 
 BACTERIA GOALS:
 {increase_context or 'None specified'}
 {decrease_context or 'None specified'}
-
-PREBIOTICS:
-{patient.get('prebiotics', 'None specified')}
 
 AVAILABLE FOODS FROM IFCT DATABASE:
 {food_context}
@@ -364,7 +358,7 @@ OUTPUT JSON SCHEMA:
 {{
   "calorie_target": {calorie_target},
   "day_1": {{
-    "breakfast": {{"name": "...", "ingredients": [{{"name": "...", "quantity_g": 100, "food_id": "IFCT-xxx"}}], "total_calories": 400, "protein_g": 12, "carbs_g": 50, "fat_g": 10, "fiber_g": 5, "prep_time_min": 15, "benefits": "..."}},
+    "breakfast": {{"name": "...", "ingredients": [{{"name": "...", "quantity_g": 100}}], "total_calories": 400, "protein_g": 12, "carbs_g": 50, "fat_g": 10, "fiber_g": 5, "prep_time_min": 15, "benefits": "..."}},
     "mid_morning_snack": {{...}},
     "lunch": {{...}},
     "evening_snack": {{...}},
@@ -382,16 +376,17 @@ Generate the complete 7-day meal plan now. Output ONLY valid JSON."""
             contentType="application/json",
             accept="application/json",
             body=json.dumps({
-                "anthropic_version": "bedrock-2023-05-31",
-                "max_tokens": 8000,
-                "temperature": 0.3,
-                "system": system_prompt,
-                "messages": [{"role": "user", "content": user_prompt}],
+                "inputText": prompt,
+                "textGenerationConfig": {
+                    "maxTokenCount": 8000,
+                    "temperature": 0.3,
+                    "topP": 0.9,
+                }
             })
         )
 
         result = json.loads(response["body"].read())
-        content = result.get("content", [{}])[0].get("text", "")
+        content = result.get("results", [{}])[0].get("outputText", "")
 
         # Extract JSON from response
         json_start = content.find("{")
