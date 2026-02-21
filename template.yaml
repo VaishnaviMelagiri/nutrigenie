@@ -1,0 +1,130 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  NutriGenie — Simplified Kit ID-based Meal Plan Generator
+  2 Lambda functions + API Gateway + S3
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Timeout: 120
+    MemorySize: 512
+    Environment:
+      Variables:
+        DATA_BUCKET: !Ref DataBucket
+        LLM_MODEL_ID: anthropic.claude-3-haiku-20240307-v1:0
+        EMBEDDING_MODEL_ID: amazon.titan-embed-text-v2:0
+
+Resources:
+
+  # ─── S3 Bucket (data + frontend) ─────────────────────
+  DataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'nutrigenie-data-${AWS::AccountId}'
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders: ['*']
+            AllowedMethods: [GET]
+            AllowedOrigins: ['*']
+
+  FrontendBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'nutrigenie-web-${AWS::AccountId}'
+      WebsiteConfiguration:
+        IndexDocument: index.html
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+
+  FrontendBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref FrontendBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: PublicRead
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Sub '${FrontendBucket.Arn}/*'
+
+  # ─── Lambda Functions ───────────────────────────────
+  LoadPatientFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: nutrigenie-load-patient
+      CodeUri: backend/lambdas/load_patient/
+      Handler: lambda_function.lambda_handler
+      MemorySize: 256
+      Timeout: 10
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref DataBucket
+      Events:
+        GetPatient:
+          Type: Api
+          Properties:
+            Path: /patient/{kit_id}
+            Method: GET
+            RestApiId: !Ref NutriGenieApi
+
+  GenerateMealFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: nutrigenie-generate-meal
+      CodeUri: backend/lambdas/generate_meal/
+      Handler: lambda_function.lambda_handler
+      MemorySize: 1024
+      Timeout: 300
+      Layers:
+        - !Ref NumpyLayer
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref DataBucket
+        - Statement:
+            - Effect: Allow
+              Action: bedrock:InvokeModel
+              Resource: '*'
+      Events:
+        GenerateMeal:
+          Type: Api
+          Properties:
+            Path: /meal
+            Method: POST
+            RestApiId: !Ref NutriGenieApi
+
+  # ─── Lambda Layer (numpy) ──────────────────────────
+  NumpyLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: nutrigenie-numpy
+      ContentUri: backend/layers/numpy/
+      CompatibleRuntimes:
+        - python3.12
+
+  # ─── API Gateway ───────────────────────────────────
+  NutriGenieApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: NutriGenieAPI
+      StageName: prod
+      Cors:
+        AllowMethods: "'GET,POST,OPTIONS'"
+        AllowHeaders: "'Content-Type'"
+        AllowOrigin: "'*'"
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint
+    Value: !Sub 'https://${NutriGenieApi}.execute-api.${AWS::Region}.amazonaws.com/prod'
+  FrontendUrl:
+    Description: Frontend website URL
+    Value: !GetAtt FrontendBucket.WebsiteURL
+  DataBucket:
+    Description: S3 bucket for patient and nutrition data
+    Value: !Ref DataBucket

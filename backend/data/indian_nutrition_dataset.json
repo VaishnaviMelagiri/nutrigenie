@@ -1,0 +1,1809 @@
+[
+    {
+        "food_id": "IFCT-001",
+        "category": "Cereals",
+        "name_en": "Rice (raw, milled)",
+        "name_hi": "चावल",
+        "name_regional": {
+            "tamil": "அரிசி",
+            "telugu": "బియ్యం",
+            "kannada": "ಅಕ್ಕಿ"
+        },
+        "per_100g": {
+            "calories": 345,
+            "protein_g": 6.8,
+            "carbs_g": 78.2,
+            "fat_g": 0.5,
+            "fiber_g": 0.2
+        },
+        "micronutrients": {
+            "iron_mg": 0.7,
+            "calcium_mg": 10,
+            "zinc_mg": 1.2,
+            "vitamin_b1_mg": 0.06
+        },
+        "common_dishes": [
+            "Steamed rice",
+            "Biryani",
+            "Idli",
+            "Dosa",
+            "Pongal"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-002",
+        "category": "Cereals",
+        "name_en": "Wheat flour (whole)",
+        "name_hi": "गेहूं का आटा",
+        "name_regional": {
+            "tamil": "கோதுமை மாவு",
+            "telugu": "గోధుమ పిండి"
+        },
+        "per_100g": {
+            "calories": 341,
+            "protein_g": 12.1,
+            "carbs_g": 71.2,
+            "fat_g": 1.7,
+            "fiber_g": 1.2
+        },
+        "micronutrients": {
+            "iron_mg": 4.9,
+            "calcium_mg": 48,
+            "zinc_mg": 2.2,
+            "vitamin_b1_mg": 0.49
+        },
+        "common_dishes": [
+            "Roti",
+            "Chapati",
+            "Paratha",
+            "Puri",
+            "Phulka"
+        ],
+        "allergen_tags": [
+            "gluten"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-003",
+        "category": "Cereals",
+        "name_en": "Ragi (Finger millet)",
+        "name_hi": "रागी",
+        "name_regional": {
+            "tamil": "கேழ்வரகு",
+            "telugu": "రాగి",
+            "kannada": "ರಾಗಿ"
+        },
+        "per_100g": {
+            "calories": 328,
+            "protein_g": 7.3,
+            "carbs_g": 72.0,
+            "fat_g": 1.3,
+            "fiber_g": 3.6
+        },
+        "micronutrients": {
+            "iron_mg": 3.9,
+            "calcium_mg": 344,
+            "zinc_mg": 2.3,
+            "vitamin_b1_mg": 0.42
+        },
+        "common_dishes": [
+            "Ragi dosa",
+            "Ragi mudde",
+            "Ragi porridge",
+            "Ragi roti"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-004",
+        "category": "Cereals",
+        "name_en": "Jowar (Sorghum)",
+        "name_hi": "ज्वार",
+        "name_regional": {
+            "tamil": "சோளம்",
+            "telugu": "జొన్న"
+        },
+        "per_100g": {
+            "calories": 349,
+            "protein_g": 10.4,
+            "carbs_g": 72.6,
+            "fat_g": 1.9,
+            "fiber_g": 1.6
+        },
+        "micronutrients": {
+            "iron_mg": 4.1,
+            "calcium_mg": 25,
+            "zinc_mg": 1.6
+        },
+        "common_dishes": [
+            "Jowar roti",
+            "Jowar bhakri",
+            "Jowar dosa"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-005",
+        "category": "Cereals",
+        "name_en": "Bajra (Pearl millet)",
+        "name_hi": "बाजरा",
+        "name_regional": {
+            "tamil": "கம்பு",
+            "telugu": "సజ్జ"
+        },
+        "per_100g": {
+            "calories": 361,
+            "protein_g": 11.6,
+            "carbs_g": 67.5,
+            "fat_g": 5.0,
+            "fiber_g": 1.2
+        },
+        "micronutrients": {
+            "iron_mg": 8.0,
+            "calcium_mg": 42,
+            "zinc_mg": 3.1
+        },
+        "common_dishes": [
+            "Bajra roti",
+            "Bajra khichdi",
+            "Bajra porridge"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-006",
+        "category": "Cereals",
+        "name_en": "Oats",
+        "name_hi": "जई",
+        "per_100g": {
+            "calories": 374,
+            "protein_g": 13.6,
+            "carbs_g": 67.7,
+            "fat_g": 5.3,
+            "fiber_g": 10.1
+        },
+        "micronutrients": {
+            "iron_mg": 4.7,
+            "calcium_mg": 54,
+            "zinc_mg": 3.9
+        },
+        "common_dishes": [
+            "Oats porridge",
+            "Oats upma",
+            "Oats dosa",
+            "Oats idli"
+        ],
+        "allergen_tags": [
+            "gluten"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-010",
+        "category": "Pulses",
+        "name_en": "Moong dal (Green gram, split)",
+        "name_hi": "मूंग दाल",
+        "name_regional": {
+            "tamil": "பாசிப்பருப்பு",
+            "telugu": "పెసరపప్పు"
+        },
+        "per_100g": {
+            "calories": 348,
+            "protein_g": 24.5,
+            "carbs_g": 59.9,
+            "fat_g": 1.2,
+            "fiber_g": 0.8
+        },
+        "micronutrients": {
+            "iron_mg": 3.9,
+            "calcium_mg": 75,
+            "zinc_mg": 2.4,
+            "folate_mcg": 140
+        },
+        "common_dishes": [
+            "Moong dal tadka",
+            "Moong dal khichdi",
+            "Moong dal cheela",
+            "Pesarattu"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-011",
+        "category": "Pulses",
+        "name_en": "Toor dal (Pigeon pea, split)",
+        "name_hi": "तूर दाल",
+        "name_regional": {
+            "tamil": "துவரம்பருப்பு",
+            "telugu": "కందిపప్పు"
+        },
+        "per_100g": {
+            "calories": 335,
+            "protein_g": 22.3,
+            "carbs_g": 57.6,
+            "fat_g": 1.7,
+            "fiber_g": 1.5
+        },
+        "micronutrients": {
+            "iron_mg": 2.7,
+            "calcium_mg": 73,
+            "zinc_mg": 2.8,
+            "folate_mcg": 185
+        },
+        "common_dishes": [
+            "Sambar",
+            "Dal fry",
+            "Dal rice",
+            "Rasam"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-012",
+        "category": "Pulses",
+        "name_en": "Chana dal (Bengal gram, split)",
+        "name_hi": "चना दाल",
+        "per_100g": {
+            "calories": 360,
+            "protein_g": 20.8,
+            "carbs_g": 59.8,
+            "fat_g": 5.3,
+            "fiber_g": 1.2
+        },
+        "micronutrients": {
+            "iron_mg": 5.3,
+            "calcium_mg": 56,
+            "zinc_mg": 3.0,
+            "folate_mcg": 186
+        },
+        "common_dishes": [
+            "Chana dal tadka",
+            "Puran poli",
+            "Sundal"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-013",
+        "category": "Pulses",
+        "name_en": "Masoor dal (Red lentils)",
+        "name_hi": "मसूर दाल",
+        "per_100g": {
+            "calories": 343,
+            "protein_g": 25.1,
+            "carbs_g": 56.5,
+            "fat_g": 0.7,
+            "fiber_g": 0.7
+        },
+        "micronutrients": {
+            "iron_mg": 7.6,
+            "calcium_mg": 69,
+            "zinc_mg": 3.3,
+            "folate_mcg": 125
+        },
+        "common_dishes": [
+            "Masoor dal tadka",
+            "Masoor dal soup",
+            "Dal palak"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-014",
+        "category": "Pulses",
+        "name_en": "Rajma (Kidney beans)",
+        "name_hi": "राजमा",
+        "per_100g": {
+            "calories": 346,
+            "protein_g": 22.9,
+            "carbs_g": 60.6,
+            "fat_g": 1.3,
+            "fiber_g": 4.8
+        },
+        "micronutrients": {
+            "iron_mg": 5.1,
+            "calcium_mg": 260,
+            "zinc_mg": 2.7
+        },
+        "common_dishes": [
+            "Rajma curry",
+            "Rajma chawal",
+            "Rajma salad"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-015",
+        "category": "Pulses",
+        "name_en": "Kabuli chana (Chickpeas)",
+        "name_hi": "काबुली चना",
+        "per_100g": {
+            "calories": 364,
+            "protein_g": 19.3,
+            "carbs_g": 60.9,
+            "fat_g": 6.0,
+            "fiber_g": 3.9
+        },
+        "micronutrients": {
+            "iron_mg": 4.6,
+            "calcium_mg": 202,
+            "zinc_mg": 2.5
+        },
+        "common_dishes": [
+            "Chole",
+            "Chana masala",
+            "Hummus",
+            "Chaat"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-020",
+        "category": "Vegetables",
+        "name_en": "Spinach (Palak)",
+        "name_hi": "पालक",
+        "name_regional": {
+            "tamil": "கீரை",
+            "telugu": "పాలకూర"
+        },
+        "per_100g": {
+            "calories": 26,
+            "protein_g": 2.0,
+            "carbs_g": 2.9,
+            "fat_g": 0.7,
+            "fiber_g": 0.6
+        },
+        "micronutrients": {
+            "iron_mg": 1.1,
+            "calcium_mg": 73,
+            "vitamin_a_mcg": 5580,
+            "vitamin_c_mg": 28
+        },
+        "common_dishes": [
+            "Palak paneer",
+            "Palak dal",
+            "Palak paratha",
+            "Palak soup"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-021",
+        "category": "Vegetables",
+        "name_en": "Bottle gourd (Lauki)",
+        "name_hi": "लौकी",
+        "name_regional": {
+            "tamil": "சுரைக்காய்",
+            "telugu": "సొరకాయ"
+        },
+        "per_100g": {
+            "calories": 12,
+            "protein_g": 0.2,
+            "carbs_g": 2.5,
+            "fat_g": 0.1,
+            "fiber_g": 0.6
+        },
+        "micronutrients": {
+            "calcium_mg": 20,
+            "vitamin_c_mg": 6,
+            "zinc_mg": 0.7
+        },
+        "common_dishes": [
+            "Lauki sabzi",
+            "Lauki kofta",
+            "Lauki chana dal",
+            "Lauki raita"
+        ],
+        "allergen_tags": [],
+        "season": "summer"
+    },
+    {
+        "food_id": "IFCT-022",
+        "category": "Vegetables",
+        "name_en": "Bitter gourd (Karela)",
+        "name_hi": "करेला",
+        "per_100g": {
+            "calories": 25,
+            "protein_g": 1.6,
+            "carbs_g": 4.2,
+            "fat_g": 0.2,
+            "fiber_g": 0.8
+        },
+        "micronutrients": {
+            "iron_mg": 0.6,
+            "calcium_mg": 20,
+            "vitamin_c_mg": 88,
+            "vitamin_a_mcg": 210
+        },
+        "common_dishes": [
+            "Karela sabzi",
+            "Karela chips",
+            "Stuffed karela"
+        ],
+        "allergen_tags": [],
+        "season": "summer"
+    },
+    {
+        "food_id": "IFCT-023",
+        "category": "Vegetables",
+        "name_en": "Okra (Bhindi)",
+        "name_hi": "भिंडी",
+        "per_100g": {
+            "calories": 35,
+            "protein_g": 1.9,
+            "carbs_g": 6.4,
+            "fat_g": 0.2,
+            "fiber_g": 1.2
+        },
+        "micronutrients": {
+            "iron_mg": 0.4,
+            "calcium_mg": 66,
+            "vitamin_c_mg": 13,
+            "folate_mcg": 88
+        },
+        "common_dishes": [
+            "Bhindi masala",
+            "Bhindi fry",
+            "Stuffed bhindi",
+            "Bhindi do pyaza"
+        ],
+        "allergen_tags": [],
+        "season": "summer"
+    },
+    {
+        "food_id": "IFCT-024",
+        "category": "Vegetables",
+        "name_en": "Tomato",
+        "name_hi": "टमाटर",
+        "per_100g": {
+            "calories": 20,
+            "protein_g": 0.9,
+            "carbs_g": 3.6,
+            "fat_g": 0.2,
+            "fiber_g": 0.8
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 27,
+            "vitamin_a_mcg": 351,
+            "potassium_mg": 114
+        },
+        "common_dishes": [
+            "Tomato rasam",
+            "Tomato chutney",
+            "Tomato rice",
+            "Curry base"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-025",
+        "category": "Vegetables",
+        "name_en": "Onion",
+        "name_hi": "प्याज",
+        "per_100g": {
+            "calories": 50,
+            "protein_g": 1.2,
+            "carbs_g": 11.1,
+            "fat_g": 0.1,
+            "fiber_g": 0.6
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 11,
+            "calcium_mg": 47,
+            "phosphorus_mg": 50
+        },
+        "common_dishes": [
+            "Base for curries",
+            "Onion raita",
+            "Onion pakora"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-026",
+        "category": "Vegetables",
+        "name_en": "Potato",
+        "name_hi": "आलू",
+        "per_100g": {
+            "calories": 97,
+            "protein_g": 1.6,
+            "carbs_g": 22.6,
+            "fat_g": 0.1,
+            "fiber_g": 0.4
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 17,
+            "potassium_mg": 247,
+            "iron_mg": 0.5
+        },
+        "common_dishes": [
+            "Aloo gobi",
+            "Aloo paratha",
+            "Aloo matar",
+            "Dum aloo"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-027",
+        "category": "Vegetables",
+        "name_en": "Cauliflower (Gobi)",
+        "name_hi": "गोभी",
+        "per_100g": {
+            "calories": 30,
+            "protein_g": 2.6,
+            "carbs_g": 4.0,
+            "fat_g": 0.4,
+            "fiber_g": 1.2
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 56,
+            "calcium_mg": 33,
+            "folate_mcg": 94
+        },
+        "common_dishes": [
+            "Gobi manchurian",
+            "Aloo gobi",
+            "Gobi paratha",
+            "Gobi 65"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-028",
+        "category": "Vegetables",
+        "name_en": "Brinjal (Eggplant)",
+        "name_hi": "बैंगन",
+        "per_100g": {
+            "calories": 24,
+            "protein_g": 1.4,
+            "carbs_g": 4.0,
+            "fat_g": 0.3,
+            "fiber_g": 1.3
+        },
+        "micronutrients": {
+            "iron_mg": 0.4,
+            "calcium_mg": 18,
+            "vitamin_c_mg": 12
+        },
+        "common_dishes": [
+            "Baingan bharta",
+            "Brinjal curry",
+            "Stuffed brinjal",
+            "Bagara baingan"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-029",
+        "category": "Vegetables",
+        "name_en": "Drumstick (Moringa)",
+        "name_hi": "सहजन",
+        "per_100g": {
+            "calories": 26,
+            "protein_g": 2.5,
+            "carbs_g": 3.7,
+            "fat_g": 0.1,
+            "fiber_g": 0.8
+        },
+        "micronutrients": {
+            "iron_mg": 0.4,
+            "calcium_mg": 30,
+            "vitamin_c_mg": 120,
+            "vitamin_a_mcg": 110
+        },
+        "common_dishes": [
+            "Sambar",
+            "Drumstick curry",
+            "Drumstick soup"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-030",
+        "category": "Vegetables",
+        "name_en": "Carrot",
+        "name_hi": "गाजर",
+        "per_100g": {
+            "calories": 48,
+            "protein_g": 0.9,
+            "carbs_g": 10.6,
+            "fat_g": 0.2,
+            "fiber_g": 1.2
+        },
+        "micronutrients": {
+            "vitamin_a_mcg": 6460,
+            "vitamin_c_mg": 4,
+            "calcium_mg": 80,
+            "iron_mg": 1.0
+        },
+        "common_dishes": [
+            "Gajar halwa",
+            "Mixed vegetable curry",
+            "Carrot raita",
+            "Carrot pickle"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-031",
+        "category": "Vegetables",
+        "name_en": "Green beans (French beans)",
+        "name_hi": "फ्रेंच बीन्स",
+        "per_100g": {
+            "calories": 26,
+            "protein_g": 1.7,
+            "carbs_g": 4.5,
+            "fat_g": 0.1,
+            "fiber_g": 1.8
+        },
+        "micronutrients": {
+            "iron_mg": 1.7,
+            "calcium_mg": 50,
+            "vitamin_c_mg": 24
+        },
+        "common_dishes": [
+            "Beans poriyal",
+            "Beans thoran",
+            "Beans curry"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-032",
+        "category": "Vegetables",
+        "name_en": "Cucumber",
+        "name_hi": "खीरा",
+        "per_100g": {
+            "calories": 13,
+            "protein_g": 0.4,
+            "carbs_g": 2.5,
+            "fat_g": 0.1,
+            "fiber_g": 0.4
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 7,
+            "potassium_mg": 50,
+            "calcium_mg": 10
+        },
+        "common_dishes": [
+            "Cucumber raita",
+            "Cucumber salad",
+            "Koshimbir"
+        ],
+        "allergen_tags": [],
+        "season": "summer"
+    },
+    {
+        "food_id": "IFCT-040",
+        "category": "Fruits",
+        "name_en": "Banana",
+        "name_hi": "केला",
+        "per_100g": {
+            "calories": 116,
+            "protein_g": 1.2,
+            "carbs_g": 27.2,
+            "fat_g": 0.3,
+            "fiber_g": 0.4
+        },
+        "micronutrients": {
+            "potassium_mg": 88,
+            "vitamin_b6_mg": 0.36,
+            "vitamin_c_mg": 7
+        },
+        "common_dishes": [
+            "Banana shake",
+            "Banana chips",
+            "Kela halwa",
+            "Raw banana curry"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-041",
+        "category": "Fruits",
+        "name_en": "Papaya",
+        "name_hi": "पपीता",
+        "per_100g": {
+            "calories": 32,
+            "protein_g": 0.6,
+            "carbs_g": 7.2,
+            "fat_g": 0.1,
+            "fiber_g": 0.8
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 57,
+            "vitamin_a_mcg": 666,
+            "folate_mcg": 38
+        },
+        "common_dishes": [
+            "Papaya salad",
+            "Papaya smoothie",
+            "Raw papaya sabzi"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-042",
+        "category": "Fruits",
+        "name_en": "Guava (Amrud)",
+        "name_hi": "अमरूद",
+        "per_100g": {
+            "calories": 51,
+            "protein_g": 0.9,
+            "carbs_g": 11.2,
+            "fat_g": 0.3,
+            "fiber_g": 5.4
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 212,
+            "vitamin_a_mcg": 79,
+            "potassium_mg": 91
+        },
+        "common_dishes": [
+            "Fresh guava",
+            "Guava juice",
+            "Amrud chaat"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-043",
+        "category": "Fruits",
+        "name_en": "Apple",
+        "name_hi": "सेब",
+        "per_100g": {
+            "calories": 59,
+            "protein_g": 0.2,
+            "carbs_g": 13.7,
+            "fat_g": 0.5,
+            "fiber_g": 1.0
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 1,
+            "potassium_mg": 75,
+            "iron_mg": 0.7
+        },
+        "common_dishes": [
+            "Fresh apple",
+            "Apple raita",
+            "Apple chaat"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-044",
+        "category": "Fruits",
+        "name_en": "Pomegranate (Anar)",
+        "name_hi": "अनार",
+        "per_100g": {
+            "calories": 65,
+            "protein_g": 1.6,
+            "carbs_g": 14.5,
+            "fat_g": 0.1,
+            "fiber_g": 2.3
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 16,
+            "iron_mg": 0.3,
+            "potassium_mg": 133
+        },
+        "common_dishes": [
+            "Fresh pomegranate",
+            "Anar raita",
+            "Juice"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-050",
+        "category": "Dairy",
+        "name_en": "Curd (Yogurt)",
+        "name_hi": "दही",
+        "per_100g": {
+            "calories": 60,
+            "protein_g": 3.1,
+            "carbs_g": 3.0,
+            "fat_g": 4.0,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "calcium_mg": 149,
+            "phosphorus_mg": 93,
+            "vitamin_b12_mcg": 0.2
+        },
+        "common_dishes": [
+            "Raita",
+            "Lassi",
+            "Chaas",
+            "Curd rice",
+            "Kadhi"
+        ],
+        "allergen_tags": [
+            "dairy"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-051",
+        "category": "Dairy",
+        "name_en": "Paneer (Cottage cheese)",
+        "name_hi": "पनीर",
+        "per_100g": {
+            "calories": 265,
+            "protein_g": 18.3,
+            "carbs_g": 1.2,
+            "fat_g": 20.8,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "calcium_mg": 208,
+            "phosphorus_mg": 138,
+            "vitamin_a_mcg": 174
+        },
+        "common_dishes": [
+            "Palak paneer",
+            "Paneer tikka",
+            "Paneer bhurji",
+            "Shahi paneer",
+            "Paneer butter masala"
+        ],
+        "allergen_tags": [
+            "dairy"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-052",
+        "category": "Dairy",
+        "name_en": "Milk (cow, whole)",
+        "name_hi": "दूध",
+        "per_100g": {
+            "calories": 67,
+            "protein_g": 3.2,
+            "carbs_g": 4.4,
+            "fat_g": 4.1,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "calcium_mg": 120,
+            "phosphorus_mg": 90,
+            "vitamin_b12_mcg": 0.2,
+            "vitamin_d_mcg": 0.3
+        },
+        "common_dishes": [
+            "Chai",
+            "Turmeric milk",
+            "Kheer",
+            "Payasam"
+        ],
+        "allergen_tags": [
+            "dairy",
+            "lactose"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-053",
+        "category": "Dairy",
+        "name_en": "Ghee (Clarified butter)",
+        "name_hi": "घी",
+        "per_100g": {
+            "calories": 897,
+            "protein_g": 0,
+            "carbs_g": 0,
+            "fat_g": 99.5,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "vitamin_a_mcg": 684,
+            "vitamin_d_mcg": 1.1,
+            "vitamin_e_mg": 2.8
+        },
+        "common_dishes": [
+            "Tadka",
+            "Dal fry",
+            "Rice",
+            "Roti accompaniment"
+        ],
+        "allergen_tags": [
+            "dairy"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-060",
+        "category": "Spices",
+        "name_en": "Turmeric (Haldi)",
+        "name_hi": "हल्दी",
+        "per_100g": {
+            "calories": 349,
+            "protein_g": 6.3,
+            "carbs_g": 69.4,
+            "fat_g": 5.1,
+            "fiber_g": 2.6
+        },
+        "micronutrients": {
+            "iron_mg": 67.8,
+            "calcium_mg": 150,
+            "potassium_mg": 2080
+        },
+        "common_dishes": [
+            "All Indian curries",
+            "Turmeric milk",
+            "Pickle"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-061",
+        "category": "Spices",
+        "name_en": "Cumin seeds (Jeera)",
+        "name_hi": "जीरा",
+        "per_100g": {
+            "calories": 375,
+            "protein_g": 17.8,
+            "carbs_g": 44.2,
+            "fat_g": 22.3,
+            "fiber_g": 10.5
+        },
+        "micronutrients": {
+            "iron_mg": 66.4,
+            "calcium_mg": 931,
+            "magnesium_mg": 366
+        },
+        "common_dishes": [
+            "Jeera rice",
+            "Tadka",
+            "Raita"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-062",
+        "category": "Spices",
+        "name_en": "Coriander leaves (Dhania)",
+        "name_hi": "धनिया पत्ती",
+        "per_100g": {
+            "calories": 44,
+            "protein_g": 3.3,
+            "carbs_g": 6.3,
+            "fat_g": 0.6,
+            "fiber_g": 1.2
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 135,
+            "vitamin_a_mcg": 6748,
+            "iron_mg": 1.4
+        },
+        "common_dishes": [
+            "Garnish",
+            "Chutney",
+            "Coriander rice"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-063",
+        "category": "Spices",
+        "name_en": "Curry leaves (Kadi patta)",
+        "name_hi": "कड़ी पत्ता",
+        "per_100g": {
+            "calories": 108,
+            "protein_g": 6.1,
+            "carbs_g": 18.7,
+            "fat_g": 1.0,
+            "fiber_g": 6.4
+        },
+        "micronutrients": {
+            "iron_mg": 0.93,
+            "calcium_mg": 810,
+            "vitamin_a_mcg": 7560
+        },
+        "common_dishes": [
+            "South Indian curries",
+            "Tadka",
+            "Poha"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-070",
+        "category": "Nuts and Seeds",
+        "name_en": "Almonds (Badam)",
+        "name_hi": "बादाम",
+        "per_100g": {
+            "calories": 655,
+            "protein_g": 20.8,
+            "carbs_g": 10.5,
+            "fat_g": 58.9,
+            "fiber_g": 1.7
+        },
+        "micronutrients": {
+            "calcium_mg": 230,
+            "iron_mg": 5.1,
+            "vitamin_e_mg": 26.2,
+            "magnesium_mg": 270
+        },
+        "common_dishes": [
+            "Badam milk",
+            "Snack",
+            "Kheer garnish",
+            "Badam halwa"
+        ],
+        "allergen_tags": [
+            "tree_nut"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-071",
+        "category": "Nuts and Seeds",
+        "name_en": "Peanuts (Groundnuts, Moongphali)",
+        "name_hi": "मूंगफली",
+        "per_100g": {
+            "calories": 567,
+            "protein_g": 25.3,
+            "carbs_g": 16.1,
+            "fat_g": 49.2,
+            "fiber_g": 3.1
+        },
+        "micronutrients": {
+            "iron_mg": 2.5,
+            "calcium_mg": 90,
+            "zinc_mg": 3.4,
+            "vitamin_e_mg": 9.1
+        },
+        "common_dishes": [
+            "Peanut chutney",
+            "Peanut salad",
+            "Chikki",
+            "Poha topping"
+        ],
+        "allergen_tags": [
+            "peanut"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-072",
+        "category": "Nuts and Seeds",
+        "name_en": "Flax seeds (Alsi)",
+        "name_hi": "अलसी",
+        "per_100g": {
+            "calories": 530,
+            "protein_g": 20.3,
+            "carbs_g": 28.9,
+            "fat_g": 37.1,
+            "fiber_g": 22.7
+        },
+        "micronutrients": {
+            "iron_mg": 5.7,
+            "calcium_mg": 170,
+            "omega3_g": 22.8,
+            "magnesium_mg": 392
+        },
+        "common_dishes": [
+            "Chutney",
+            "Smoothie additive",
+            "Roti additive"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-073",
+        "category": "Nuts and Seeds",
+        "name_en": "Sesame seeds (Til)",
+        "name_hi": "तिल",
+        "per_100g": {
+            "calories": 573,
+            "protein_g": 18.3,
+            "carbs_g": 25.0,
+            "fat_g": 43.3,
+            "fiber_g": 2.9
+        },
+        "micronutrients": {
+            "calcium_mg": 1450,
+            "iron_mg": 9.3,
+            "zinc_mg": 7.8,
+            "magnesium_mg": 351
+        },
+        "common_dishes": [
+            "Til chikki",
+            "Til ladoo",
+            "Sesame chutney"
+        ],
+        "allergen_tags": [
+            "sesame"
+        ],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-080",
+        "category": "Oils",
+        "name_en": "Mustard oil (Sarson ka tel)",
+        "name_hi": "सरसों का तेल",
+        "per_100g": {
+            "calories": 884,
+            "protein_g": 0,
+            "carbs_g": 0,
+            "fat_g": 98.0,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "vitamin_e_mg": 11.6
+        },
+        "common_dishes": [
+            "North Indian cooking",
+            "Pickle",
+            "Tadka"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-081",
+        "category": "Oils",
+        "name_en": "Coconut oil",
+        "name_hi": "नारियल तेल",
+        "per_100g": {
+            "calories": 892,
+            "protein_g": 0,
+            "carbs_g": 0,
+            "fat_g": 99.1,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "vitamin_e_mg": 0.11
+        },
+        "common_dishes": [
+            "South Indian cooking",
+            "Kerala cuisine"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-090",
+        "category": "Fish and Seafood",
+        "name_en": "Rohu fish",
+        "name_hi": "रोहू मछली",
+        "per_100g": {
+            "calories": 97,
+            "protein_g": 16.6,
+            "carbs_g": 0,
+            "fat_g": 3.4,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "iron_mg": 0.6,
+            "calcium_mg": 650,
+            "omega3_g": 0.6,
+            "vitamin_d_mcg": 5.4
+        },
+        "common_dishes": [
+            "Fish curry",
+            "Fish fry",
+            "Machher jhol"
+        ],
+        "allergen_tags": [
+            "fish"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-091",
+        "category": "Poultry",
+        "name_en": "Chicken (breast, skinless)",
+        "name_hi": "चिकन",
+        "per_100g": {
+            "calories": 110,
+            "protein_g": 25.0,
+            "carbs_g": 0,
+            "fat_g": 1.2,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "iron_mg": 0.7,
+            "zinc_mg": 1.0,
+            "vitamin_b12_mcg": 0.4,
+            "phosphorus_mg": 229
+        },
+        "common_dishes": [
+            "Chicken curry",
+            "Tandoori chicken",
+            "Chicken biryani",
+            "Chicken tikka"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-092",
+        "category": "Eggs",
+        "name_en": "Egg (hen, whole)",
+        "name_hi": "अंडा",
+        "per_100g": {
+            "calories": 173,
+            "protein_g": 13.3,
+            "carbs_g": 0,
+            "fat_g": 13.3,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "iron_mg": 2.1,
+            "calcium_mg": 58,
+            "vitamin_b12_mcg": 1.4,
+            "vitamin_d_mcg": 1.8
+        },
+        "common_dishes": [
+            "Egg curry",
+            "Boiled egg",
+            "Egg bhurji",
+            "Omelette",
+            "Egg dosa"
+        ],
+        "allergen_tags": [
+            "egg"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-100",
+        "category": "Miscellaneous",
+        "name_en": "Jaggery (Gur)",
+        "name_hi": "गुड़",
+        "per_100g": {
+            "calories": 383,
+            "protein_g": 0.4,
+            "carbs_g": 95.0,
+            "fat_g": 0.1,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "iron_mg": 11.0,
+            "calcium_mg": 80,
+            "potassium_mg": 740
+        },
+        "common_dishes": [
+            "Gur ki roti",
+            "Payasam",
+            "Til gur ladoo",
+            "Sweetener"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-101",
+        "category": "Miscellaneous",
+        "name_en": "Coconut (fresh)",
+        "name_hi": "नारियल",
+        "per_100g": {
+            "calories": 354,
+            "protein_g": 3.4,
+            "carbs_g": 15.2,
+            "fat_g": 34.7,
+            "fiber_g": 3.6
+        },
+        "micronutrients": {
+            "iron_mg": 1.7,
+            "calcium_mg": 10,
+            "potassium_mg": 324,
+            "zinc_mg": 0.9
+        },
+        "common_dishes": [
+            "Coconut chutney",
+            "Coconut barfi",
+            "Curry base",
+            "Coconut rice"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-102",
+        "category": "Miscellaneous",
+        "name_en": "Tamarind (Imli)",
+        "name_hi": "इमली",
+        "per_100g": {
+            "calories": 283,
+            "protein_g": 3.1,
+            "carbs_g": 67.4,
+            "fat_g": 0.1,
+            "fiber_g": 5.1
+        },
+        "micronutrients": {
+            "iron_mg": 1.3,
+            "calcium_mg": 170,
+            "potassium_mg": 375
+        },
+        "common_dishes": [
+            "Sambar",
+            "Rasam",
+            "Tamarind rice",
+            "Chutney"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-103",
+        "category": "Miscellaneous",
+        "name_en": "Green chili",
+        "name_hi": "हरी मिर्च",
+        "per_100g": {
+            "calories": 29,
+            "protein_g": 2.9,
+            "carbs_g": 3.0,
+            "fat_g": 0.6,
+            "fiber_g": 6.8
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 111,
+            "vitamin_a_mcg": 292,
+            "iron_mg": 4.3
+        },
+        "common_dishes": [
+            "All Indian dishes",
+            "Pickle",
+            "Chutney"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-104",
+        "category": "Pulses",
+        "name_en": "Urad dal (Black gram, split)",
+        "name_hi": "उड़द दाल",
+        "per_100g": {
+            "calories": 341,
+            "protein_g": 24.0,
+            "carbs_g": 59.6,
+            "fat_g": 1.4,
+            "fiber_g": 0.9
+        },
+        "micronutrients": {
+            "iron_mg": 3.8,
+            "calcium_mg": 154,
+            "zinc_mg": 3.5,
+            "folate_mcg": 140
+        },
+        "common_dishes": [
+            "Dal makhani",
+            "Idli batter",
+            "Dosa batter",
+            "Medu vada"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-105",
+        "category": "Vegetables",
+        "name_en": "Pumpkin (Kaddu)",
+        "name_hi": "कद्दू",
+        "per_100g": {
+            "calories": 25,
+            "protein_g": 1.4,
+            "carbs_g": 4.6,
+            "fat_g": 0.1,
+            "fiber_g": 0.7
+        },
+        "micronutrients": {
+            "vitamin_a_mcg": 2100,
+            "vitamin_c_mg": 7,
+            "calcium_mg": 10,
+            "iron_mg": 0.7
+        },
+        "common_dishes": [
+            "Kaddu ki sabzi",
+            "Pumpkin soup",
+            "Pumpkin halwa"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-106",
+        "category": "Vegetables",
+        "name_en": "Sweet potato (Shakarkand)",
+        "name_hi": "शकरकंद",
+        "per_100g": {
+            "calories": 120,
+            "protein_g": 1.2,
+            "carbs_g": 28.2,
+            "fat_g": 0.3,
+            "fiber_g": 0.8
+        },
+        "micronutrients": {
+            "vitamin_a_mcg": 2180,
+            "vitamin_c_mg": 24,
+            "calcium_mg": 46,
+            "potassium_mg": 393
+        },
+        "common_dishes": [
+            "Roasted shakarkand",
+            "Shakarkand chaat",
+            "Shakarkand ki sabzi"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-107",
+        "category": "Cereals",
+        "name_en": "Poha (Flattened rice)",
+        "name_hi": "पोहा",
+        "per_100g": {
+            "calories": 346,
+            "protein_g": 6.6,
+            "carbs_g": 77.3,
+            "fat_g": 1.2,
+            "fiber_g": 0.7
+        },
+        "micronutrients": {
+            "iron_mg": 20.0,
+            "calcium_mg": 20,
+            "vitamin_b1_mg": 0.05
+        },
+        "common_dishes": [
+            "Poha",
+            "Chivda",
+            "Poha cutlet"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-108",
+        "category": "Cereals",
+        "name_en": "Semolina (Suji/Rava)",
+        "name_hi": "सूजी",
+        "per_100g": {
+            "calories": 348,
+            "protein_g": 10.4,
+            "carbs_g": 74.8,
+            "fat_g": 0.8,
+            "fiber_g": 0.2
+        },
+        "micronutrients": {
+            "iron_mg": 2.1,
+            "calcium_mg": 16,
+            "zinc_mg": 1.1
+        },
+        "common_dishes": [
+            "Rava upma",
+            "Rava dosa",
+            "Rava idli",
+            "Sheera",
+            "Sooji halwa"
+        ],
+        "allergen_tags": [
+            "gluten"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-109",
+        "category": "Nuts and Seeds",
+        "name_en": "Cashew (Kaju)",
+        "name_hi": "काजू",
+        "per_100g": {
+            "calories": 596,
+            "protein_g": 21.2,
+            "carbs_g": 22.3,
+            "fat_g": 46.9,
+            "fiber_g": 1.3
+        },
+        "micronutrients": {
+            "iron_mg": 5.0,
+            "calcium_mg": 50,
+            "zinc_mg": 4.8,
+            "magnesium_mg": 260
+        },
+        "common_dishes": [
+            "Kaju katli",
+            "Curry garnish",
+            "Kaju barfi",
+            "Korma"
+        ],
+        "allergen_tags": [
+            "tree_nut"
+        ],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-110",
+        "category": "Vegetables",
+        "name_en": "Capsicum (Bell pepper)",
+        "name_hi": "शिमला मिर्च",
+        "per_100g": {
+            "calories": 24,
+            "protein_g": 1.3,
+            "carbs_g": 4.3,
+            "fat_g": 0.3,
+            "fiber_g": 1.4
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 137,
+            "vitamin_a_mcg": 292,
+            "potassium_mg": 175
+        },
+        "common_dishes": [
+            "Stuffed capsicum",
+            "Capsicum sabzi",
+            "Mixed vegetable",
+            "Paneer capsicum"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-111",
+        "category": "Vegetables",
+        "name_en": "Cabbage (Patta gobi)",
+        "name_hi": "पत्ता गोभी",
+        "per_100g": {
+            "calories": 27,
+            "protein_g": 1.8,
+            "carbs_g": 4.6,
+            "fat_g": 0.1,
+            "fiber_g": 1.0
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 124,
+            "calcium_mg": 39,
+            "vitamin_k_mcg": 76
+        },
+        "common_dishes": [
+            "Cabbage sabzi",
+            "Patta gobi paratha",
+            "Coleslaw"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-112",
+        "category": "Vegetables",
+        "name_en": "Ridge gourd (Turai)",
+        "name_hi": "तोरई",
+        "per_100g": {
+            "calories": 18,
+            "protein_g": 0.5,
+            "carbs_g": 3.4,
+            "fat_g": 0.1,
+            "fiber_g": 0.5
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 5,
+            "calcium_mg": 18,
+            "iron_mg": 0.4
+        },
+        "common_dishes": [
+            "Turai sabzi",
+            "Turai chana dal",
+            "Turai raita"
+        ],
+        "allergen_tags": [],
+        "season": "summer"
+    },
+    {
+        "food_id": "IFCT-113",
+        "category": "Miscellaneous",
+        "name_en": "Honey (Shahad)",
+        "name_hi": "शहद",
+        "per_100g": {
+            "calories": 319,
+            "protein_g": 0.3,
+            "carbs_g": 79.5,
+            "fat_g": 0,
+            "fiber_g": 0
+        },
+        "micronutrients": {
+            "iron_mg": 0.4,
+            "calcium_mg": 5,
+            "vitamin_c_mg": 0.5
+        },
+        "common_dishes": [
+            "Sweetener",
+            "Warm water + honey",
+            "Dressing"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-114",
+        "category": "Vegetables",
+        "name_en": "Beetroot (Chukandar)",
+        "name_hi": "चुकंदर",
+        "per_100g": {
+            "calories": 43,
+            "protein_g": 1.7,
+            "carbs_g": 8.8,
+            "fat_g": 0.1,
+            "fiber_g": 0.9
+        },
+        "micronutrients": {
+            "iron_mg": 1.0,
+            "calcium_mg": 18,
+            "vitamin_c_mg": 10,
+            "folate_mcg": 83
+        },
+        "common_dishes": [
+            "Beetroot halwa",
+            "Beetroot raita",
+            "Beetroot juice",
+            "Beetroot poriyal"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-115",
+        "category": "Fruits",
+        "name_en": "Mango (Aam)",
+        "name_hi": "आम",
+        "per_100g": {
+            "calories": 74,
+            "protein_g": 0.6,
+            "carbs_g": 16.9,
+            "fat_g": 0.4,
+            "fiber_g": 0.7
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 16,
+            "vitamin_a_mcg": 2743,
+            "potassium_mg": 205
+        },
+        "common_dishes": [
+            "Fresh mango",
+            "Aam panna",
+            "Mango lassi",
+            "Mango pickle",
+            "Aamras"
+        ],
+        "allergen_tags": [],
+        "season": "summer"
+    },
+    {
+        "food_id": "IFCT-116",
+        "category": "Vegetables",
+        "name_en": "Methi leaves (Fenugreek)",
+        "name_hi": "मेथी",
+        "per_100g": {
+            "calories": 49,
+            "protein_g": 4.4,
+            "carbs_g": 6.0,
+            "fat_g": 0.9,
+            "fiber_g": 1.1
+        },
+        "micronutrients": {
+            "iron_mg": 1.9,
+            "calcium_mg": 395,
+            "vitamin_c_mg": 52,
+            "vitamin_a_mcg": 2340
+        },
+        "common_dishes": [
+            "Methi paratha",
+            "Methi thepla",
+            "Methi sabzi",
+            "Methi dal"
+        ],
+        "allergen_tags": [],
+        "season": "winter"
+    },
+    {
+        "food_id": "IFCT-117",
+        "category": "Vegetables",
+        "name_en": "Ash gourd (Petha)",
+        "name_hi": "पेठा",
+        "per_100g": {
+            "calories": 10,
+            "protein_g": 0.4,
+            "carbs_g": 1.9,
+            "fat_g": 0.1,
+            "fiber_g": 0.5
+        },
+        "micronutrients": {
+            "vitamin_c_mg": 10,
+            "calcium_mg": 30,
+            "potassium_mg": 150
+        },
+        "common_dishes": [
+            "Petha sweet",
+            "Ash gourd juice",
+            "Koottu curry"
+        ],
+        "allergen_tags": [],
+        "season": "summer"
+    },
+    {
+        "food_id": "IFCT-118",
+        "category": "Pulses",
+        "name_en": "Sprouted moong",
+        "name_hi": "अंकुरित मूंग",
+        "per_100g": {
+            "calories": 44,
+            "protein_g": 4.0,
+            "carbs_g": 6.3,
+            "fat_g": 0.3,
+            "fiber_g": 0.6
+        },
+        "micronutrients": {
+            "iron_mg": 1.0,
+            "vitamin_c_mg": 10,
+            "calcium_mg": 19,
+            "folate_mcg": 60
+        },
+        "common_dishes": [
+            "Moong sprout chaat",
+            "Sprout salad",
+            "Usal"
+        ],
+        "allergen_tags": [],
+        "season": "year-round"
+    },
+    {
+        "food_id": "IFCT-119",
+        "category": "Nuts and Seeds",
+        "name_en": "Walnuts (Akhrot)",
+        "name_hi": "अखरोट",
+        "per_100g": {
+            "calories": 654,
+            "protein_g": 15.2,
+            "carbs_g": 10.8,
+            "fat_g": 64.5,
+            "fiber_g": 1.5
+        },
+        "micronutrients": {
+            "omega3_g": 9.1,
+            "magnesium_mg": 158,
+            "zinc_mg": 3.1,
+            "vitamin_e_mg": 0.7
+        },
+        "common_dishes": [
+            "Snack",
+            "Kheer garnish",
+            "Halwa garnish"
+        ],
+        "allergen_tags": [
+            "tree_nut"
+        ],
+        "season": "winter"
+    }
+]

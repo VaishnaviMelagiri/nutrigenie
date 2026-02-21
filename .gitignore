@@ -1,0 +1,24 @@
+# AWS SAM build artifacts
+.aws-sam/
+samconfig.toml
+
+# Lambda layer (rebuilds during deploy)
+backend/layers/numpy/python/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary
+/tmp/
+*.zip
+output.json

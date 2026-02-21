@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriGenie — Personalized Meal Plan</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-gradient"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-icon">🧬</span>
+            <span class="nav-title">NutriGenie</span>
+        </div>
+        <div class="nav-status" id="connectionStatus">
+            <span class="status-dot online"></span>
+            <span class="status-text">Ready</span>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-badge">AI-Powered Nutrition • RAG + IFCT Data</div>
+        <h1 class="hero-title">
+            Enter Your Kit ID.<br>
+            <span class="gradient-text">Get Your Perfect Meals.</span>
+        </h1>
+        <p class="hero-subtitle">
+            Personalized 7-day Indian meal plan based on your IOM gut health report.
+        </p>
+
+        <!-- Kit ID Input -->
+        <div class="kit-input-container">
+            <div class="kit-input-wrapper">
+                <span class="kit-prefix">🔑</span>
+                <input type="text" id="kitId" placeholder="IOM_KIT001" class="kit-input" value="IOM_KIT001">
+            </div>
+            <button class="btn-generate" id="generateBtn">
+                <span class="btn-text" id="btnText">🍽️ Generate Meal Plan</span>
+                <div class="spinner hidden" id="spinner"></div>
+            </button>
+        </div>
+    </header>
+
+    <!-- Patient Profile (shown after loading) -->
+    <section class="section hidden" id="profileSection">
+        <h2 class="section-title">📋 Patient Profile</h2>
+        <div class="profile-grid" id="profileGrid"></div>
+    </section>
+
+    <!-- Meal Plan (shown after generation) -->
+    <section class="section hidden" id="mealSection">
+        <h2 class="section-title">🍛 Your 7-Day Meal Plan</h2>
+        <p class="section-desc" id="planInfo"></p>
+        <div class="day-tabs" id="dayTabs"></div>
+        <div class="meals-container" id="mealsContainer"></div>
+        <div class="daily-summary hidden" id="dailySummary"></div>
+    </section>
+
+    <!-- Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <footer class="footer">
+        Built with 🧬 AI • Powered by AWS Bedrock + RAG • IFCT Nutrition Data
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
