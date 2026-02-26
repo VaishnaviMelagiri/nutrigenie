@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Upload | IOM Bioworks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;">
+    <div class="bg-gradient"></div>
+
+    <div class="modal-card" style="width: 400px; padding: 30px;">
+        <h2 style="margin-bottom: 20px; text-align:center;">IOM Report Upload</h2>
+
+        <label class="modal-label">Patient Kit ID</label>
+        <input type="text" id="kitId" class="modal-input" placeholder="e.g. IOM_KIT003">
+
+        <label class="modal-label" style="margin-top:15px;">Report File (PDF or JSON)</label>
+        <input type="file" id="reportFile" class="modal-input" accept=".pdf,.json">
+
+        <button id="uploadBtn" class="btn-generate" style="margin-top: 25px; width:100%;" onclick="handleUpload()">
+            <span id="uploadBtnText">Upload to Database</span>
+            <div class="spinner hidden" id="uploadSpinner"></div>
+        </button>
+
+        <p id="uploadStatus" style="margin-top: 15px; font-size: 0.85rem; text-align:center; color: var(--text-muted);">
+        </p>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        const API_URL = 'https://f8c7x5y2hg.execute-api.us-east-1.amazonaws.com/prod';
+
+        function showToast(msg, type = 'info') {
+            const t = document.createElement('div'); t.className = `toast ${type}`; t.textContent = msg;
+            document.getElementById('toastContainer').appendChild(t);
+            setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(40px)'; t.style.transition = 'all 0.3s'; setTimeout(() => t.remove(), 300); }, 4000);
+        }
+
+        async function handleUpload() {
+            const kitId = document.getElementById('kitId').value.trim();
+            const fileInput = document.getElementById('reportFile');
+
+            if (!kitId) return showToast('Please enter a Kit ID', 'error');
+            if (!fileInput.files[0]) return showToast('Please select a file', 'error');
+
+            const file = fileInput.files[0];
+            const btn = document.getElementById('uploadBtn');
+            const btnText = document.getElementById('uploadBtnText');
+            const spinner = document.getElementById('uploadSpinner');
+            const status = document.getElementById('uploadStatus');
+
+            btn.disabled = true;
+            btnText.classList.add('hidden');
+            spinner.classList.remove('hidden');
+            status.textContent = 'Processing...';
+
+            try {
+                // Convert file to base64
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = async () => {
+                    const base64String = reader.result.split(',')[1];
+
+                    status.textContent = 'Sending to AWS...';
+
+                    const response = await fetch(`${API_URL}/upload`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            kit_id: kitId,
+                            file_name: file.name,
+                            file_content_base64: base64String
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(result.error || 'Upload failed');
+                    }
+
+                    showToast('✅ Upload completed & parsed successfully!', 'success');
+                    status.textContent = 'Success! You can now generate a meal plan for this ID.';
+                    status.style.color = 'var(--success)';
+                };
+            } catch (err) {
+                console.error(err);
+                showToast(`❌ ${err.message}`, 'error');
+                status.textContent = `Error: ${err.message}`;
+                status.style.color = 'var(--danger)';
+            } finally {
+                btn.disabled = false;
+                btnText.classList.remove('hidden');
+                spinner.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -127,7 +127,8 @@ function renderDay(dayKey) {
     const day = mealPlanData?.[dayKey];
     if (!day) { $('mealsContainer').innerHTML = '<p style="text-align:center;color:var(--text-muted)">No data for this day</p>'; return; }
 
-    const meals = ['breakfast', 'mid_morning_snack', 'lunch', 'evening_snack', 'dinner'];
+    // Dynamically find all meal objects in the day
+    const meals = Object.keys(day).filter(k => day[k] && typeof day[k] === 'object' && 'total_calories' in day[k]);
     const labels = { breakfast: '🌅 Breakfast', mid_morning_snack: '🍎 Snack', lunch: '☀️ Lunch', evening_snack: '🫖 Tea Time', dinner: '🌙 Dinner' };
 
     let html = '';
@@ -158,7 +159,7 @@ function renderDay(dayKey) {
         html += `<div class="meal-card" id="meal-${dayKey}-${type}">
             <div class="meal-content">
                 <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-                    <span class="meal-type">${labels[type] || type}</span>
+                    <span class="meal-type">${window.customLabels?.[type] || labels[type] || type.replace(/_/g, ' ')}</span>
                     ${m.prep_time_min ? `<span style="font-size:0.7rem;color:var(--text-muted)">⏱ ${m.prep_time_min}min</span>` : ''}
                 </div>
                 <h3 class="meal-name">${esc(m.name || 'Meal')}</h3>
@@ -183,6 +184,12 @@ function renderDay(dayKey) {
             </div>
         </div>`;
     });
+
+    html += `<div style="text-align:center; margin-top:20px;">
+                <button class="btn-swap" style="background:var(--card-bg);border:2px dashed var(--border);color:var(--text)" onclick="openAddMealModal('${dayKey}')">
+                    ➕ Add Custom Meal to ${dayKey.replace('_', ' ').replace('d', 'D')}
+                </button>
+            </div>`;
 
     $('mealsContainer').innerHTML = html;
 
@@ -273,6 +280,87 @@ async function confirmSwap() {
         $('swapSpinner').classList.add('hidden');
         btn.disabled = false;
     }
+}
+
+// ═══ Add Custom Meal Feature ═══
+let addMealDayTarget = null;
+
+function openAddMealModal(day) {
+    addMealDayTarget = day;
+    $('addMealType').value = '';
+    $('addMealName').value = '';
+    $('addMealIngredients').value = '';
+    $('addMealCal').value = '0';
+    $('addMealPro').value = '0';
+    $('addMealCarb').value = '0';
+    $('addMealFat').value = '0';
+    $('addMealModal').classList.remove('hidden');
+}
+
+function closeAddMealModal() {
+    $('addMealModal').classList.add('hidden');
+    addMealDayTarget = null;
+}
+
+function confirmAddMeal() {
+    if (!addMealDayTarget) return;
+    const type = $('addMealType').value.trim() || 'Custom Meal';
+    const name = $('addMealName').value.trim() || 'Unnamed Meal';
+    const ings = $('addMealIngredients').value.split(',').map(i => i.trim()).filter(i => i);
+
+    const cal = parseInt($('addMealCal').value) || 0;
+    const pro = parseInt($('addMealPro').value) || 0;
+    const carb = parseInt($('addMealCarb').value) || 0;
+    const fat = parseInt($('addMealFat').value) || 0;
+
+    const newMeal = {
+        name: name,
+        ingredients: ings.map(ing => ({ name: ing, quantity_g: "N/A" })),
+        total_calories: cal,
+        protein_g: pro,
+        carbs_g: carb,
+        fat_g: fat,
+        fiber_g: 0,
+        prep_time_min: 5,
+        benefits: "Custom meal added by Nutritionist"
+    };
+
+    let mealKey = type.toLowerCase().replace(/[^a-z0-9]/g, '_');
+    if (mealPlanData[addMealDayTarget][mealKey]) {
+        mealKey = mealKey + '_' + Math.floor(Math.random() * 1000);
+    }
+
+    mealPlanData[addMealDayTarget][mealKey] = newMeal;
+
+    if (!window.customLabels) window.customLabels = {};
+    window.customLabels[mealKey] = type;
+
+    renderDay(addMealDayTarget);
+    closeAddMealModal();
+    showToast(`✅ Added custom meal: "${name}"`, 'success');
+}
+
+// ═══ PDF Export ═══
+function downloadPDF() {
+    const element = document.getElementById('mealSection');
+    const kitId = document.getElementById('kitId').value.trim() || 'MealPlan';
+
+    // Set a class to hide some elements during print if needed
+    element.classList.add('exporting-pdf');
+
+    const opt = {
+        margin: 0.5,
+        filename: `${kitId}_Meal_Plan.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#0f172a' },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    showToast('📄 Generating PDF... Please wait.', 'info', 5000);
+    html2pdf().set(opt).from(element).save().then(() => {
+        element.classList.remove('exporting-pdf');
+        showToast('✅ PDF Downloaded!', 'success');
+    });
 }
 
 // ═══ API ═══

@@ -350,6 +350,7 @@ PATIENT PROFILE:
 - Daily calorie target: {calorie_target} kcal
 
 AVOID LIST (NEVER USE THESE): {', '.join(patient['avoid_list']) if patient['avoid_list'] else 'None'}
+YES INGREDIENTS (ACTIVELY PRIORITIZE THESE): {patient.get('prebiotics', 'None specified')}
 
 BACTERIA GOALS:
 {increase_context or 'None specified'}

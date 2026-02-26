@@ -11,6 +11,8 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- html2pdf library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
@@ -61,7 +63,10 @@
 
     <!-- Meal Plan -->
     <section class="section hidden" id="mealSection">
-        <h2 class="section-title">🍛 Your 7-Day Meal Plan</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h2 class="section-title">🍛 Your 7-Day Meal Plan</h2>
+            <button class="btn-pdf" id="downloadPdfBtn" onclick="downloadPDF()">📄 Download as PDF</button>
+        </div>
         <p class="section-desc" id="planInfo"></p>
         <div class="day-tabs" id="dayTabs"></div>
         <div class="meals-container" id="mealsContainer"></div>
@@ -84,6 +89,51 @@
                 <button class="btn-swap" id="swapBtn" onclick="confirmSwap()">
                     <span id="swapBtnText">🔄 Get Alternative</span>
                     <div class="spinner hidden" id="swapSpinner"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Custom Meal Modal -->
+    <div class="modal-overlay hidden" id="addMealModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>➕ Add Custom Meal</h3>
+                <button class="modal-close" onclick="closeAddMealModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <label class="modal-label">Meal Slot (e.g. Extra Snack)</label>
+                <input type="text" id="addMealType" class="modal-input" placeholder="e.g. Post-Workout Snack">
+
+                <label class="modal-label">Meal Name</label>
+                <input type="text" id="addMealName" class="modal-input" placeholder="e.g. Whey Protein Shake">
+
+                <label class="modal-label">Ingredients (comma separated)</label>
+                <input type="text" id="addMealIngredients" class="modal-input"
+                    placeholder="e.g. 1 scoop whey, 200ml milk">
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                    <div>
+                        <label class="modal-label">Calories</label>
+                        <input type="number" id="addMealCal" class="modal-input" value="0">
+                    </div>
+                    <div>
+                        <label class="modal-label">Protein (g)</label>
+                        <input type="number" id="addMealPro" class="modal-input" value="0">
+                    </div>
+                    <div>
+                        <label class="modal-label">Carbs (g)</label>
+                        <input type="number" id="addMealCarb" class="modal-input" value="0">
+                    </div>
+                    <div>
+                        <label class="modal-label">Fat (g)</label>
+                        <input type="number" id="addMealFat" class="modal-input" value="0">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-swap" style="background:#4f46e5;color:white" onclick="confirmAddMeal()">
+                    <span>➕ Add to Plan</span>
                 </button>
             </div>
         </div>

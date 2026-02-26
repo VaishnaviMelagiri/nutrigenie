@@ -141,12 +141,49 @@ Resources:
             Method: POST
             RestApiId: !Ref NutriGenieApi
 
+  UploadReportFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: nutrigenie-upload-report
+      CodeUri: backend/lambdas/upload_report/
+      Handler: lambda_function.lambda_handler
+      MemorySize: 512
+      Timeout: 120
+      Layers:
+        - !Ref PyPdfLayer
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref DataBucket
+        - Statement:
+            - Effect: Allow
+              Action: bedrock:InvokeModel
+              Resource: '*'
+      Environment:
+        Variables:
+          REPORTS_BUCKET: !Ref DataBucket
+      Events:
+        UploadReport:
+          Type: Api
+          Properties:
+            Path: /upload
+            Method: POST
+            RestApiId: !Ref NutriGenieApi
+
   # ─── Lambda Layer (numpy) ──────────────────────────
   NumpyLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
       LayerName: nutrigenie-numpy
       ContentUri: backend/layers/numpy/
+      CompatibleRuntimes:
+        - python3.12
+
+  # ─── Lambda Layer (pypdf) ──────────────────────────
+  PyPdfLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: nutrigenie-pypdf
+      ContentUri: backend/layers/pypdf/
       CompatibleRuntimes:
         - python3.12
 
