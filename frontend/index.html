@@ -73,71 +73,9 @@
         <div class="daily-summary hidden" id="dailySummary"></div>
     </section>
 
-    <!-- Swap Modal -->
-    <div class="modal-overlay hidden" id="swapModal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3>🔄 Swap Meal</h3>
-                <button class="modal-close" onclick="closeSwapModal()">✕</button>
-            </div>
-            <div class="modal-body">
-                <p class="modal-meal-info" id="swapMealInfo"></p>
-                <label class="modal-label">Why do you want to swap? (optional)</label>
-                <input type="text" id="swapReason" class="modal-input" placeholder="e.g. I don't like ragi">
-            </div>
-            <div class="modal-footer">
-                <button class="btn-swap" id="swapBtn" onclick="confirmSwap()">
-                    <span id="swapBtnText">🔄 Get Alternative</span>
-                    <div class="spinner hidden" id="swapSpinner"></div>
-                </button>
-            </div>
-        </div>
-    </div>
 
-    <!-- Add Custom Meal Modal -->
-    <div class="modal-overlay hidden" id="addMealModal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3>➕ Add Custom Meal</h3>
-                <button class="modal-close" onclick="closeAddMealModal()">✕</button>
-            </div>
-            <div class="modal-body">
-                <label class="modal-label">Meal Slot (e.g. Extra Snack)</label>
-                <input type="text" id="addMealType" class="modal-input" placeholder="e.g. Post-Workout Snack">
 
-                <label class="modal-label">Meal Name</label>
-                <input type="text" id="addMealName" class="modal-input" placeholder="e.g. Whey Protein Shake">
 
-                <label class="modal-label">Ingredients (comma separated)</label>
-                <input type="text" id="addMealIngredients" class="modal-input"
-                    placeholder="e.g. 1 scoop whey, 200ml milk">
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
-                    <div>
-                        <label class="modal-label">Calories</label>
-                        <input type="number" id="addMealCal" class="modal-input" value="0">
-                    </div>
-                    <div>
-                        <label class="modal-label">Protein (g)</label>
-                        <input type="number" id="addMealPro" class="modal-input" value="0">
-                    </div>
-                    <div>
-                        <label class="modal-label">Carbs (g)</label>
-                        <input type="number" id="addMealCarb" class="modal-input" value="0">
-                    </div>
-                    <div>
-                        <label class="modal-label">Fat (g)</label>
-                        <input type="number" id="addMealFat" class="modal-input" value="0">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-swap" style="background:#4f46e5;color:white" onclick="confirmAddMeal()">
-                    <span>➕ Add to Plan</span>
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Toast -->
     <div class="toast-container" id="toastContainer"></div>
