@@ -158,16 +158,6 @@ Resources:
             - Effect: Allow
               Action: bedrock:InvokeModel
               Resource: '*'
-      Environment:
-        Variables:
-          REPORTS_BUCKET: !Ref DataBucket
-      Events:
-        UploadReport:
-          Type: Api
-          Properties:
-            Path: /upload
-            Method: POST
-            RestApiId: !Ref NutriGenieApi
 
   # ─── Lambda Layer (numpy) ──────────────────────────
   NumpyLayer:
